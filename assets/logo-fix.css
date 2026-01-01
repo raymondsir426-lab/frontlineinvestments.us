@@ -1,0 +1,471 @@
+/* Override styles for header logo and text alignment
+   - Use flex layout so the circular logo and the two-line text align neatly
+   - Reduce text sizes and scale the logo proportionally so it doesn't overlap
+*/
+
+/* Logo container: ensure logo + text are inline, centered and spaced */
+.logo, .logo a {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 18px !important; /* adjusted gap to match larger logo */
+	text-decoration: none !important;
+	margin-left: -12px !important; /* nudge the logo+text slightly left */
+}
+
+/* Easy manual control: set these variables to change header logo sizing without touching many rules */
+:root {
+	/* scaled by 1.3x from original defaults (73px → 95px, 59px → 77px) */
+	--header-logo-size: 95px; /* desktop size (73 * 1.3 ≈ 94.9 → 95) */
+	--header-logo-size-mobile: 77px; /* mobile size (59 * 1.3 ≈ 76.7 → 77) */
+	--header-banner-overlap: 45px;
+	--header-banner-overlap-mobile: 33.9444444px;
+}
+
+/* Circular logo image (flex item) */
+.logo-image {
+	width: var(--header-logo-size) !important; /* change the variable to resize */
+	height: var(--header-logo-size) !important;
+	border-radius: 50% !important;
+	overflow: hidden !important;
+	padding: 8px !important; /* increased breathing space */
+	box-sizing: border-box !important;
+	flex-shrink: 0 !important;
+	transition: box-shadow 220ms ease, filter 220ms ease !important;
+	box-shadow: 0 0 20px rgba(212,175,55,0.28) !important;
+	position: relative !important;
+	z-index: 1 !important;
+}
+.logo-image img,
+.logo-image[src],
+.logo-image {
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: contain !important; /* keep whole logo visible inside circle */
+}
+
+/* Slightly smaller on narrow screens */
+@media (max-width: 768px) {
+	  .logo-image {
+		  width: var(--header-logo-size-mobile) !important;
+		  height: var(--header-logo-size-mobile) !important;
+ 		padding: 6px !important;
+ 		box-shadow: 0 0 14px rgba(212,175,55,0.18) !important;
+ 	}
+ 	.logo, .logo a {
+ 		gap: 12px !important;
+ 	}
+}
+
+/* Disable scale/brightness hover transforms from compiled CSS; keep glow only */
+.logo-image:hover,
+.logo-image:focus,
+.logo-image:active {
+	transform: none !important;
+	-webkit-transform: none !important;
+	filter: none !important;
+	-webkit-filter: none !important;
+	box-shadow: 0 0 26px rgba(212,175,55,0.36) !important;
+}
+
+/* Cursor: don't present as a link */
+.logo, .logo a, .logo-image {
+	cursor: default !important;
+}
+
+/* Header (blue banner) size adjustments */
+.header {
+	/* a little taller at top, then shrink when scrolled for a nicer effect */
+	padding: 0.8rem 0.6rem !important;
+	transition: padding 220ms ease !important;
+}
+.header.scrolled {
+	padding: 0.45rem 0.6rem !important; /* shrink a bit when scrolled */
+}
+
+/* Mobile menu enhancements: close button + overlay for click-off dismiss */
+.mobile-menu-close {
+	display: none !important;
+}
+
+.mobile-menu-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(2, 11, 19, 0.65);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 220ms ease;
+	z-index: 900;
+}
+
+.mobile-menu-overlay.visible {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+@media (max-width: 992px) {
+	.main-nav {
+		z-index: 1000 !important;
+		position: fixed !important;
+	}
+
+	.main-nav.mobile-menu-has-close {
+		padding-top: 5rem !important;
+	}
+
+	.main-nav .mobile-menu-close {
+		position: absolute;
+		top: 1.5rem;
+		left: 1.5rem;
+		width: 44px;
+		height: 44px;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.35);
+		border: 1px solid rgba(218, 171, 45, 0.4);
+		border-radius: 999px;
+		color: var(--color-gold-primary, #DAAB2D);
+		font-size: 1.65rem;
+		line-height: 1;
+		cursor: pointer;
+		transition: box-shadow 220ms ease, transform 220ms ease;
+		box-shadow: 0 0 18px rgba(218, 171, 45, 0.35);
+		z-index: 1001;
+	}
+
+	.main-nav .mobile-menu-close:hover,
+	.main-nav .mobile-menu-close:focus-visible {
+		transform: scale(1.05);
+		box-shadow: 0 0 24px rgba(218, 171, 45, 0.55);
+		outline: none;
+	}
+}
+
+/* New: unified three-word wrapper and word styles
+   - All words use the same font, size and weight
+   - First two words are golden, last word is white
+   - Equal spacing between words and no wrapping
+*/
+.logo-text-wrapper {
+	display: inline-flex !important;
+	flex-direction: column !important;
+	align-items: center !important; /* center the two words under the logo */
+	gap: 4px !important; /* small vertical gap between lines */
+	margin: 0 !important;
+	text-align: center !important;
+}
+
+.logo-word {
+    font-family: var(--font-primary, "Playfair Display", serif) !important;
+	font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+	display: inline-block !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+	text-align: center !important;
+}
+
+.logo-word--gold {
+	color: var(--color-gold-primary, #DAAB2D) !important;
+}
+
+.logo-word--secondary {
+	font-family: var(--font-secondary, "Montserrat", sans-serif) !important;
+	font-size: 1rem !important;
+	font-weight: 400 !important;
+	color: var(--color-white, #FFFFFF) !important;
+	letter-spacing: 2px !important;
+	text-transform: uppercase !important;
+	display: inline-block !important; /* allow center alignment within wrapper */
+	text-align: center !important;
+}
+
+/* If compiled JS tries to hide these, force visible */
+.logo-text-wrapper, .logo-word {
+	visibility: visible !important;
+	opacity: 1 !important;
+}
+
+/* Ensure logo doesn't overlap text if layout tries absolute positioning */
+.logo, .logo a, .logo .logo-text-wrapper {
+	position: relative !important;
+}
+
+.paragraph-patch-hidden {
+	visibility: hidden !important;
+}
+
+/* Strong enforcement: target the actual <img> element with high specificity
+   This ensures inline or earlier stylesheet rules can't keep the image large. */
+  .header .logo a img.logo-image,
+  img.logo-image {
+ 	width: var(--header-logo-size) !important;
+ 	height: var(--header-logo-size) !important;
+ 	max-width: var(--header-logo-size) !important;
+ 	max-height: var(--header-logo-size) !important;
+ 	object-fit: contain !important;
+ 	display: inline-block !important;
+}
+
+@media (max-width: 768px) {
+ 	.header .logo a img.logo-image,
+ 	img.logo-image {
+	 	width: var(--header-logo-size-mobile) !important;
+	 	height: var(--header-logo-size-mobile) !important;
+	 	max-width: var(--header-logo-size-mobile) !important;
+	 	max-height: var(--header-logo-size-mobile) !important;
+ 	}
+}
+
+/* Footer centering overrides - ensure slogan & tagline are centered across the page */
+.footer-content {
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.footer-logo {
+	flex: 0 0 auto !important;
+	margin: 0 auto 2rem auto !important;
+	width: 100% !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	text-align: center !important;
+}
+
+/* Center specific footer columns when script tags them */
+.footer-column--centered {
+	text-align: center !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	gap: 0.75rem !important;
+}
+
+.footer-column--centered h3,
+.footer-column--centered h4,
+.footer-column--centered h5 {
+	width: 100% !important;
+	margin-bottom: 0.5rem !important;
+}
+
+.footer-column--centered ul,
+.footer-column--centered .footer-links-list {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 0.35rem !important;
+	width: 100% !important;
+}
+
+.footer-column--centered a,
+.footer-column--centered li,
+.footer-column--centered p {
+	text-align: center !important;
+	width: 100% !important;
+}
+
+.footer-slogan,
+.footer-tagline {
+	margin-left: auto !important;
+	margin-right: auto !important;
+	text-align: center !important;
+	max-width: 800px !important; /* keep lines readable on wide screens */
+	width: 100% !important;
+}
+
+/* Align the three gold footer lines directly under each column heading */
+.footer-links-column {
+	text-align: center !important;
+}
+
+.footer-links-column h4 {
+	text-align: center !important;
+}
+
+.footer-section-divider {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/* Floating WhatsApp button */
+
+
+.whatsapp-fab {
+	position: fixed !important;
+	bottom: 24px !important;
+	right: 24px !important;
+	z-index: 1200 !important;
+	width: 52px !important;
+	height: 52px !important;
+	border-radius: 50% !important;
+	background: linear-gradient(135deg, #25d366, #128c7e) !important;
+	box-shadow: 0 10px 25px rgba(0,0,0,0.25) !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	color: #fff !important;
+	font-size: 2rem !important;
+	text-decoration: none !important;
+	transition: transform 150ms ease, box-shadow 150ms ease !important;
+}
+
+
+.whatsapp-fab:hover,
+.whatsapp-fab:focus-visible {
+	transform: translateY(-3px) scale(1.04) !important;
+	box-shadow: 0 0 0 6px rgba(37,211,102,0.25), 0 16px 32px rgba(0,0,0,0.35) !important;
+	outline: none !important;
+}
+
+
+.whatsapp-fab svg {
+	width: 78% !important;
+	height: 78% !important;
+	fill: currentColor !important;
+}
+
+@media (max-width: 768px) {
+	.whatsapp-fab {
+		width: 46px !important;
+		height: 46px !important;
+		bottom: 18px !important;
+		right: 18px !important;
+	}
+}
+
+/* Hero background video override */
+.hero-section.hero-has-custom-video {
+	background-image: none !important;
+	background-color: #050505 !important;
+	color: #fff !important;
+}
+
+.hero-video-bg {
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	z-index: 0 !important;
+	opacity: 0;
+	transition: opacity 400ms ease;
+	pointer-events: none !important;
+	filter: saturate(115%);
+}
+
+.hero-video-bg.is-ready {
+	opacity: 1;
+}
+
+.hero-section.hero-has-custom-video .hero-overlay {
+	z-index: 1 !important;
+	background: linear-gradient(120deg, rgba(3,3,3,0.82) 0%, rgba(5,5,5,0.2) 100%) !important;
+}
+
+.hero-section.hero-has-custom-video .hero-content {
+	position: relative !important;
+	z-index: 2 !important;
+}
+
+/* Match hero heading styling with original English typography (Arabic-friendly fallbacks included) */
+.ar-page .hero-section .hero-content h1 {
+	font-family: var(--font-primary, "Playfair Display", "Noto Serif Arabic", "Scheherazade New", serif) !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.01em !important;
+	line-height: 1.2 !important;
+	font-size: clamp(2.4rem, 4vw, 3.6rem) !important;
+	text-transform: none !important;
+}
+
+.ar-page .hero-section .hero-subtitle,
+.ar-page .hero-section .company-slogan {
+	font-size: clamp(1.3rem, 2.2vw, 1.8rem) !important;
+	line-height: 1.7 !important;
+	font-weight: 400 !important;
+}
+
+/* Keep the slogan readable on the gold CTA background */
+.cta-section .company-slogan {
+	color: var(--color-black-primary) !important;
+}
+
+/* Ensure non-home banners clear the taller logo */
+.services-page,
+.about-page,
+.case-studies-page,
+.testimonials-page,
+.contact-page,
+.service-detail-page {
+	padding-top: calc(var(--header-logo-size) + 60px) !important;
+}
+
+@media (max-width: 768px) {
+	.services-page,
+	.about-page,
+	.case-studies-page,
+	.testimonials-page,
+	.contact-page,
+	.service-detail-page {
+		padding-top: calc(var(--header-logo-size-mobile) + 50px) !important;
+	}
+}
+
+.services-hero,
+.about-hero,
+.case-studies-hero,
+.testimonials-hero,
+.contact-hero,
+.service-detail-hero {
+	margin-top: calc(var(--header-banner-overlap) * -1) !important;
+	padding-top: calc(6rem + var(--header-banner-overlap)) !important;
+	padding-bottom: 6rem !important;
+	min-height: 430px !important;
+	background-position: top center !important;
+	background-size: cover !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.services-hero::before,
+.about-hero::before,
+.case-studies-hero::before,
+.testimonials-hero::before,
+.contact-hero::before,
+.service-detail-hero::before {
+	background-position: top center !important;
+	background-size: cover !important;
+	transform-origin: 50% 0% !important;
+}
+
+@media (max-width: 768px) {
+	.services-hero,
+	.about-hero,
+	.case-studies-hero,
+	.testimonials-hero,
+	.contact-hero,
+	.service-detail-hero {
+		margin-top: calc(var(--header-banner-overlap-mobile) * -1) !important;
+		padding-top: calc(4rem + var(--header-banner-overlap-mobile)) !important;
+		padding-bottom: 4rem !important;
+		min-height: calc(320px + var(--header-banner-overlap-mobile)) !important;
+	}
+}
+
+@media (min-width: 992px) {
+	.footer-slogan,
+	.footer-tagline {
+		max-width: 700px !important;
+	}
+}
+

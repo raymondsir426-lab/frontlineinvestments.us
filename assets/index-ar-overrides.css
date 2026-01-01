@@ -1,0 +1,128 @@
+/* Arabic-specific typography adjustments to improve readability without affecting the English site. */
+.ar-page body{font-size:21px;line-height:1.75}
+.ar-page .main-nav a{font-size:calc(1rem + 3px)}
+.ar-page .hero-subtitle{font-size:1.35rem;line-height:1.9}
+.ar-page .services-hero-content p{
+	font-size: calc(1.2rem + 2.5px);
+}
+.ar-page .services-hero{
+	padding-bottom: 3rem !important;
+}
+.ar-page .service-section{
+	padding-top: 2.5rem !important;
+}
+.ar-page .services-cta{
+	padding-bottom: 2rem !important;
+}
+.ar-page .case-studies-intro{
+	padding-bottom: 3rem !important;
+}
+.ar-page .case-study{
+	padding-top: 3rem !important;
+}
+.ar-page .value-content,.ar-page .services-intro-content,.ar-page .service-description,.ar-page .service-overview-content,.ar-page .about-content,.ar-page .contact-info-content,.ar-page .international-content,.ar-page .contact-hero p,.ar-page .company-slogan{font-size:1.15rem;line-height:1.95}
+.ar-page .international-inquiries .international-content p{
+	font-size: calc(1.15rem + 5px);
+}
+.ar-page .contact-hero p,
+.ar-page .contact-hero .company-slogan{
+	font-size: calc(1.15rem + 3px);
+}
+.ar-page .about-content p{
+	font-size: calc(1.15rem + 5px);
+}
+.ar-page .about-cta .cta-content p:first-of-type {
+	font-size: calc(1.1rem + 4.5px);
+}
+.ar-page .case-studies-intro-content p{
+	font-size: calc(1.15rem + 4px);
+}
+.ar-page .testimonials-intro-content p{
+	font-size: calc(1.15rem + 4px);
+}
+.ar-page .case-study .case-study-section:first-of-type p{
+	font-size: calc(1.1rem + 5px);
+}
+.ar-page .case-study .case-study-section:nth-of-type(2) p{
+	font-size: calc(1.1rem + 5px);
+}
+.ar-page .case-study .case-study-section:nth-of-type(3) p{
+	font-size: calc(1.1rem + 5px);
+}
+.ar-page .case-studies-cta .cta-content p:first-of-type{
+	font-size: calc(1.1rem + 5.5px);
+}
+.ar-page .service-detail-hero p{
+	font-size: calc(1.15rem + 5px);
+}
+.ar-page .service-overview-content p{
+	font-size: calc(1.15rem + 5px);
+}
+.ar-page #brokering .service-description p:first-child{
+	font-size: calc(1.15rem + 6.4px);
+}
+.ar-page #expansion .service-description p:first-child{
+	font-size: calc(1.15rem + 6.4px);
+}
+.ar-page #capital .service-description p:first-child{
+	font-size: calc(1.15rem + 6.4px);
+}
+.ar-page .services-intro-content{
+	font-size: calc(1.15rem + 6.4px);
+}
+.ar-page .service-cta .cta-content p:first-of-type{
+	font-size: calc(1.1rem + 6px);
+}
+.ar-page .services-cta .cta-content p:first-of-type{
+	font-size: calc(1.1rem + 12.4px);
+}
+.ar-page .services-cta .cta-content p:first-of-type,
+.ar-page .services-cta .cta-content .company-slogan{
+	margin-bottom: 0rem !important;
+}
+.ar-page .services-cta .cta-content .btn{
+	margin-top: 0rem !important;
+}
+.ar-page .cta-section .cta-content p{
+	font-size: calc(1.1rem + 4px);
+}
+.ar-page .stat-label,.ar-page .metric-label{font-size:calc(1.1rem + 2px);letter-spacing:0}
+.ar-page .testimonial-quote p,.ar-page .testimonial-content .author-info h3,.ar-page .testimonial-content .author-info p{font-size:1.15rem;line-height:1.9}
+.ar-page .contact-page .form-submit .btn{
+	font-size: calc(1rem + 3px);
+}
+.ar-page .achievement-text p{
+	font-size: calc(1.1rem + 4px);
+}
+.ar-page .value-content p:first-child{
+	font-size: calc(1.15rem + 3px);
+}
+.ar-page .value-content p:nth-of-type(2){
+	font-size: calc(1.15rem + 2px);
+}
+.ar-page .contact-info-content > p:first-of-type{
+	font-size: calc(1.15rem + 2.2px);
+}
+.ar-page .footer-tagline,.ar-page .footer-slogan,.ar-page .footer-legal a{font-size:calc(1.05rem + 5px);letter-spacing:0}
+/* Footer logo text ("فرونت لاين / الاستثمارات") */
+.ar-page .footer-logo-text{
+	font-size: calc(1.8rem + 4px);
+}
+.ar-page .footer-logo-text-secondary{
+	font-size: calc(1rem + 4px);
+}
+
+/* Testimonial title: "الرئيس التنفيذي لشركة أفق الخليج للتكنولوجيا" */
+.ar-page .author-title{
+	font-size: calc(0.9rem + 3.5px);
+}
+
+/* Testimonial author name: "أحمد الفارسي" */
+.ar-page .author-name{
+	font-size: calc(1.1rem + 2px);
+}
+
+/* Testimonial author titles on full testimonials page */
+.ar-page .testimonial-content .author-info p{
+	font-size: calc(1.15rem + 3.5px);
+}

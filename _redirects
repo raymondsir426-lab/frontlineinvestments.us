@@ -1,0 +1,11 @@
+/اتصل-بنا	/index-ar.html	200
+/index-ar.html	/ar/home	301!
+/index-ar.html/*	/ar/home	301!
+/home	/	301!
+/home/	/	301!
+/home/*	/	301!
+/ar	/ar/home	301!
+/ar/	/ar/home	301!
+/ar/*	/index-ar.html	200
+/testimonials    /ar/testimonials    301!
+/*	/index.html	200
