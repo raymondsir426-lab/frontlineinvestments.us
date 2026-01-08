@@ -3408,5 +3408,59 @@ Not an official Manus doc nor endorsed by Manus. Content may contain inaccuracie
 		  }catch(e){/* ignore */}
 		})();
 		</script>
+<script>
+/**
+ * Stackbit Home Title Injector
+ * Replaces the hero headline with content/pages/home.json
+ */
+(function injectHomeTitle(){
+  const TARGET_REGEX = /Elevating\s+Global\s+Business\s+Through\s+Strategic\s+Partnerships/i;
+
+  function apply(title){
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+
+    let node;
+    while ((node = walker.nextNode())) {
+      if (TARGET_REGEX.test(node.nodeValue)) {
+        node.nodeValue = title;
+        document.title = title;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function init(){
+    fetch("/content/pages/home.json", { cache: "no-store" })
+      .then(r => r.json())
+      .then(data => {
+        if (!data || !data.title) return;
+        if (apply(data.title)) return;
+
+        // SPA fallback
+        const mo = new MutationObserver(() => {
+          if (apply(data.title)) mo.disconnect();
+        });
+        mo.observe(document.body, { childList: true, subtree: true });
+
+        setTimeout(() => mo.disconnect(), 6000);
+      })
+      .catch(e => console.error("Stackbit home title load failed:", e));
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+
 </body>
 </html>
+
